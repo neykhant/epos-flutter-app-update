@@ -142,17 +142,23 @@ class Invoice extends StatelessWidget {
             style: kInvoiceTextStyle(18.0),
             textAlign: TextAlign.center,
           ),
-          isBuy
-              ? Text(
-                  '${localizations.merchant_name}-$name',
-                  style: kInvoiceTextStyle(18.0),
-                  textAlign: TextAlign.center,
-                )
-              : Text(
-                  '${localizations.customer_name}-$name',
-                  style: kInvoiceTextStyle(18.0),
-                  textAlign: TextAlign.center,
-                ),
+
+          //for brother shop no paid to sell
+
+          // isBuy
+          //     ? Text(
+          //         '${localizations.merchant_name}-$name',
+          //         style: kInvoiceTextStyle(18.0),
+          //         textAlign: TextAlign.center,
+          //       )
+          //     : Text(
+          //         '${localizations.customer_name}-$name',
+          //         style: kInvoiceTextStyle(18.0),
+          //         textAlign: TextAlign.center,
+          //       ),
+
+          //for brother shop no paid to sell end
+
           Text(
             '${localizations.items} - ${singles.length}',
             style: kInvoiceTextStyle(18.0),
@@ -308,44 +314,47 @@ class Invoice extends StatelessWidget {
                               ),
                             ],
                           ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          '${localizations.paid_price} :',
-                          style: kInvoiceTextStyle(18.0).copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          paid,
-                          style: kInvoiceTextStyle(18.0).copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.right,
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          '${localizations.credit} :',
-                          style: kInvoiceTextStyle(18.0).copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          credit,
-                          style: kInvoiceTextStyle(18.0).copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.right,
-                        ),
-                      ],
-                    ),
+                    // for Brother shop details
+                    // Row(
+                    //   mainAxisSize: MainAxisSize.max,
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     Text(
+                    //       '${localizations.paid_price} :',
+                    //       style: kInvoiceTextStyle(18.0).copyWith(
+                    //         fontWeight: FontWeight.bold,
+                    //       ),
+                    //     ),
+                    //     Text(
+                    //       paid,
+                    //       style: kInvoiceTextStyle(18.0).copyWith(
+                    //         fontWeight: FontWeight.bold,
+                    //       ),
+                    //       textAlign: TextAlign.right,
+                    //     ),
+                    //   ],
+                    // ),
+                    // Row(
+                    //   mainAxisSize: MainAxisSize.max,
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     Text(
+                    //       '${localizations.credit} :',
+                    //       style: kInvoiceTextStyle(18.0).copyWith(
+                    //         fontWeight: FontWeight.bold,
+                    //       ),
+                    //     ),
+                    //     Text(
+                    //       credit,
+                    //       style: kInvoiceTextStyle(18.0).copyWith(
+                    //         fontWeight: FontWeight.bold,
+                    //       ),
+                    //       textAlign: TextAlign.right,
+                    //     ),
+                    //   ],
+                    // ),
+
+                    // for Brother shop details end
                   ],
                 ),
               )

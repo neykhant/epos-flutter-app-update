@@ -575,89 +575,98 @@ class _SellScreenState extends State<SellScreen> {
                     //     ),
                     //   ],
                     // ),
-                    const SizedBox(height: 10.0),
-                    TextField(
-                      controller: _paidController,
-                      onChanged: (String value) {
-                        if (value.trim() != "" &&
-                            discountAmount >= int.parse(value)) {
-                          setState(() {
-                            credit = discountAmount - int.parse(value);
-                          });
-                        }
-                      },
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        hoverColor: Colors.white,
-                        hintText: localizations.paid_price,
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
-                        ),
-                        border: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10.0),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Text(
-                          '${localizations.credit} = ',
-                          style: kTextStyle(),
-                        ),
-                        const SizedBox(width: 5.0),
-                        Text(
-                          '${credit.toStringAsFixed(2)} Ks',
-                          style: kTextStyle(),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10.0),
-                    TextField(
-                      controller: _customerNameController,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        hoverColor: Colors.white,
-                        hintText: localizations.customer_name,
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
-                        ),
-                        border: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10.0),
-                    DropdownSearch<String>(
-                      // ignore: deprecated_member_use
-                      hint: localizations.select_customer,
-                      mode: Mode.MENU,
-                      items: customerNames,
-                      showClearButton: true,
-                      showSearchBox: true,
-                      onChanged: (String? data) {
-                        if (data != null) {
-                          for (var i = 0; i < _customerList.length; i++) {
-                            if (_customerList[i].name == data) {
-                              setState(() {
-                                customerName = _customerList[i].name;
-                              });
-                            }
-                          }
-                        } else {
-                          setState(() {
-                            customerName = '';
-                          });
-                        }
-                      },
-                    ),
+
+                    //for brother shop no paid to sell
+
+                    // const SizedBox(height: 10.0),
+                    // TextField(
+                    //   controller: _paidController,
+                    //   onChanged: (String value) {
+                    //     if (value.trim() != "" &&
+                    //         discountAmount >= int.parse(value)) {
+                    //       setState(() {
+                    //         credit = discountAmount - int.parse(value);
+                    //       });
+                    //     }
+                    //   },
+                    //   keyboardType: TextInputType.number,
+                    //   decoration: InputDecoration(
+                    //     filled: true,
+                    //     fillColor: Colors.white,
+                    //     hoverColor: Colors.white,
+                    //     hintText: localizations.paid_price,
+                    //     focusedBorder: const OutlineInputBorder(
+                    //       borderSide: BorderSide(color: Colors.black),
+                    //     ),
+                    //     border: OutlineInputBorder(
+                    //       borderSide: const BorderSide(color: Colors.black),
+                    //       borderRadius: BorderRadius.circular(10.0),
+                    //     ),
+                    //   ),
+                    // ),
+                    // const SizedBox(height: 10.0),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.end,
+                    //   mainAxisSize: MainAxisSize.max,
+                    //   children: [
+                    //     Text(
+                    //       '${localizations.credit} = ',
+                    //       style: kTextStyle(),
+                    //     ),
+                    //     const SizedBox(width: 5.0),
+                    //     Text(
+                    //       '${credit.toStringAsFixed(2)} Ks',
+                    //       style: kTextStyle(),
+                    //     ),
+                    //   ],
+                    // ),
+
+                    //for brother shop no paid to sell end
+
+                    // const SizedBox(height: 10.0),
+                    // TextField(
+                    //   controller: _customerNameController,
+                    //   decoration: InputDecoration(
+                    //     filled: true,
+                    //     fillColor: Colors.white,
+                    //     hoverColor: Colors.white,
+                    //     hintText: localizations.customer_name,
+                    //     focusedBorder: const OutlineInputBorder(
+                    //       borderSide: BorderSide(color: Colors.black),
+                    //     ),
+                    //     border: OutlineInputBorder(
+                    //       borderSide: const BorderSide(color: Colors.black),
+                    //       borderRadius: BorderRadius.circular(10.0),
+                    //     ),
+                    //   ),
+                    // ),
+                    // const SizedBox(height: 10.0),
+                    // DropdownSearch<String>(
+                    //   // ignore: deprecated_member_use
+                    //   hint: localizations.select_customer,
+                    //   mode: Mode.MENU,
+                    //   items: customerNames,
+                    //   showClearButton: true,
+                    //   showSearchBox: true,
+                    //   onChanged: (String? data) {
+                    //     if (data != null) {
+                    //       for (var i = 0; i < _customerList.length; i++) {
+                    //         if (_customerList[i].name == data) {
+                    //           setState(() {
+                    //             customerName = _customerList[i].name;
+                    //           });
+                    //         }
+                    //       }
+                    //     } else {
+                    //       setState(() {
+                    //         customerName = '';
+                    //       });
+                    //     }
+                    //   },
+                    // ),
+
+                    //for brother shop no paid to sell end
+
                     const SizedBox(height: 20.0),
                     MyButton(
                       label: '${localizations.save}-3"',
@@ -668,8 +677,9 @@ class _SellScreenState extends State<SellScreen> {
                         setState(() {
                           _isLoading = true;
                         });
-                        if (singleSaleList.isNotEmpty &&
-                            _paidController.text != '') {
+                        if (singleSaleList.isNotEmpty
+                            // && _paidController.text != ''
+                            ) {
                           if (customerName != '' &&
                               _customerNameController.text != '') {
                             showAlertDialog(
@@ -709,7 +719,8 @@ class _SellScreenState extends State<SellScreen> {
                               'extra_charges': 0, // if necessary
                               'whole_total': saleRecordTotal,
                               'discount': _discountController.text,
-                              'paid': int.parse(_paidController.text),
+                              // 'paid': int.parse(_paidController.text),
+                              'paid': 0,
                               'shop_id': shopProvider.shop!.id,
                               'single_sales': singleSales,
                             };
@@ -745,7 +756,7 @@ class _SellScreenState extends State<SellScreen> {
                               purchaseTotal = 0;
                               saleRecordTotal = 0;
                               _extraChargeController.clear();
-                              _paidController.clear();
+                              // _paidController.clear();
                               credit = 0;
                               wholeTotal = 0;
                               discount = 0;
@@ -775,8 +786,10 @@ class _SellScreenState extends State<SellScreen> {
                         setState(() {
                           _isLoading = true;
                         });
-                        if (singleSaleList.isNotEmpty &&
-                            _paidController.text != '') {
+                        if (singleSaleList.isNotEmpty
+                            // && _paidController.text != ''
+
+                            ) {
                           if (customerName != '' &&
                               _customerNameController.text != '') {
                             showAlertDialog(
@@ -816,7 +829,8 @@ class _SellScreenState extends State<SellScreen> {
                               'extra_charges': 0, // if necessary
                               'whole_total': saleRecordTotal,
                               'discount': _discountController.text,
-                              'paid': int.parse(_paidController.text),
+                              // 'paid': int.parse(_paidController.text),
+                              'paid': 0,
                               'shop_id': shopProvider.shop!.id,
                               'single_sales': singleSales,
                             };
@@ -851,7 +865,7 @@ class _SellScreenState extends State<SellScreen> {
                               purchaseTotal = 0;
                               saleRecordTotal = 0;
                               _extraChargeController.clear();
-                              _paidController.clear();
+                              // _paidController.clear();
                               credit = 0;
                               wholeTotal = 0;
                               discount = 0;
@@ -883,7 +897,7 @@ class _SellScreenState extends State<SellScreen> {
                           purchaseTotal = 0;
                           saleRecordTotal = 0;
                           _extraChargeController.clear();
-                          _paidController.clear();
+                          // _paidController.clear();
                           credit = 0;
                           wholeTotal = 0;
                           discount = 0;
