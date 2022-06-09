@@ -50,7 +50,7 @@ class Invoice extends StatelessWidget {
                 child: Text(
                   isBuy ? item.item.itemName : item.stock.itemModel.itemName,
                   style: kInvoiceTextStyle(16.0)
-                      .copyWith(fontWeight: FontWeight.bold),
+                      .copyWith(fontWeight: FontWeight.w400),
                 ),
               ),
               TableCellWidget(
@@ -78,7 +78,6 @@ class Invoice extends StatelessWidget {
           ),
         );
       }
-
       return tableRows;
     }
 
@@ -137,25 +136,25 @@ class Invoice extends StatelessWidget {
             style: kInvoiceTextStyle(18.0),
             textAlign: TextAlign.center,
           ),
-          Text(
-            metadata[3],
-            style: kInvoiceTextStyle(18.0),
-            textAlign: TextAlign.center,
-          ),
+          // Text(
+          //   metadata[3],
+          //   style: kInvoiceTextStyle(18.0),
+          //   textAlign: TextAlign.center,
+          // ),
 
           //for brother shop no paid to sell
 
-          // isBuy
-          //     ? Text(
-          //         '${localizations.merchant_name}-$name',
-          //         style: kInvoiceTextStyle(18.0),
-          //         textAlign: TextAlign.center,
-          //       )
-          //     : Text(
-          //         '${localizations.customer_name}-$name',
-          //         style: kInvoiceTextStyle(18.0),
-          //         textAlign: TextAlign.center,
-          //       ),
+          isBuy
+              ? Text(
+                  '${localizations.merchant_name}-$name',
+                  style: kInvoiceTextStyle(18.0),
+                  textAlign: TextAlign.center,
+                )
+              : Text(
+                  '${localizations.customer_name}-$name',
+                  style: kInvoiceTextStyle(18.0),
+                  textAlign: TextAlign.center,
+                ),
 
           //for brother shop no paid to sell end
 
@@ -185,7 +184,7 @@ class Invoice extends StatelessWidget {
           Table(
             border: const TableBorder(
               horizontalInside: BorderSide(
-                width: 1.0,
+                width: 0.5,
                 color: Colors.black,
                 style: BorderStyle.solid,
               ),
@@ -239,15 +238,15 @@ class Invoice extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '${localizations.total} :',
-                          style: kInvoiceTextStyle(18.0).copyWith(
-                            fontWeight: FontWeight.bold,
+                          '${localizations.total} ',
+                          style: kInvoiceTextStyle(16.0).copyWith(
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                         Text(
                           total,
-                          style: kInvoiceTextStyle(18.0).copyWith(
-                            fontWeight: FontWeight.bold,
+                          style: kInvoiceTextStyle(16.0).copyWith(
+                            fontWeight: FontWeight.w600,
                           ),
                           textAlign: TextAlign.right,
                         ),
@@ -279,15 +278,15 @@ class Invoice extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                '${localizations.discount}($discount) :',
-                                style: kInvoiceTextStyle(18.0).copyWith(
-                                  fontWeight: FontWeight.bold,
+                                '${localizations.discount}($discount) ',
+                                style: kInvoiceTextStyle(16.0).copyWith(
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                               Text(
                                 discountAmount.toStringAsFixed(2),
-                                style: kInvoiceTextStyle(18.0).copyWith(
-                                  fontWeight: FontWeight.bold,
+                                style: kInvoiceTextStyle(16.0).copyWith(
+                                  fontWeight: FontWeight.w600,
                                 ),
                                 textAlign: TextAlign.right,
                               ),
@@ -300,15 +299,15 @@ class Invoice extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                '${localizations.final_total} :',
-                                style: kInvoiceTextStyle(18.0).copyWith(
-                                  fontWeight: FontWeight.bold,
+                                '${localizations.final_total} ',
+                                style: kInvoiceTextStyle(16.0).copyWith(
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                               Text(
                                 '$finalTotal',
-                                style: kInvoiceTextStyle(18.0).copyWith(
-                                  fontWeight: FontWeight.bold,
+                                style: kInvoiceTextStyle(16.0).copyWith(
+                                  fontWeight: FontWeight.w600,
                                 ),
                                 textAlign: TextAlign.right,
                               ),
@@ -373,7 +372,7 @@ class Invoice extends StatelessWidget {
                     Table(
                       border: const TableBorder(
                         horizontalInside: BorderSide(
-                          width: 0.5,
+                          width: 1.0,
                           color: Colors.black,
                           style: BorderStyle.solid,
                         ),
