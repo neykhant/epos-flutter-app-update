@@ -106,7 +106,6 @@ class Invoice extends StatelessWidget {
           ),
         );
       }
-
       return tableRows;
     }
 
@@ -180,15 +179,16 @@ class Invoice extends StatelessWidget {
           const Divider(
             color: Colors.black,
             thickness: 1.0,
+            height: 1.0,
           ),
           Table(
-            border: const TableBorder(
-              horizontalInside: BorderSide(
-                width: 0.5,
-                color: Colors.black,
-                style: BorderStyle.solid,
-              ),
-            ),
+            // border: const TableBorder(
+            //   horizontalInside: BorderSide(
+            //     width: 0.5,
+            //     color: Colors.black,
+            //     style: BorderStyle.solid,
+            //   ),
+            // ),
             columnWidths: const {
               0: FlexColumnWidth(1.5),
               1: FlexColumnWidth(1),
@@ -217,13 +217,135 @@ class Invoice extends StatelessWidget {
                   ),
                 ],
               ),
-              ..._showInvoiceTableRow(context),
+              // ..._showInvoiceTableRow(context),
             ],
           ),
           const Divider(
             color: Colors.black,
             thickness: 1.0,
+            height: 1.0,
           ),
+          //FOR BROTHER COPY FROM ESCAPE RESTAURANT APP THIS CODE TABLE IDEAS
+          Table(
+            columnWidths: const {
+              0: FlexColumnWidth(1.5),
+              1: FlexColumnWidth(1),
+              2: FlexColumnWidth(1),
+              3: FlexColumnWidth(1),
+            },
+            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+            children: <TableRow>[
+              ..._showInvoiceTableRow(context),
+              // TableRow(
+              //   decoration: const BoxDecoration(
+              //     border: Border(
+              //       top: BorderSide(
+              //         color: Colors.black,
+              //         width: 1,
+              //         style: BorderStyle.solid,
+              //       ),
+              //     ),
+              //   ),
+              //   children: <Widget>[
+              //     TableCellWidget(
+              //       child: Text(
+              //         'Total',
+              //         style: kInvoiceTextStyle(16.0),
+              //       ),
+              //     ),
+              //     TableCellWidget(
+              //       child: Text(
+              //         '',
+              //         style: kInvoiceTextStyle(16.0),
+              //         textAlign: TextAlign.right,
+              //       ),
+              //     ),
+              //     TableCellWidget(
+              //       child: Text(
+              //         '',
+              //         style: kInvoiceTextStyle(16.0),
+              //         textAlign: TextAlign.right,
+              //       ),
+              //     ),
+              //     TableCellWidget(
+              //       child: Text(
+              //         '$total',
+              //         style: kInvoiceTextStyle(16.0),
+              //         textAlign: TextAlign.right,
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              // TableRow(
+              //   children: <Widget>[
+              //     TableCellWidget(
+              //       child: Text(
+              //         'Gov Tax',
+              //         style: kInvoiceTextStyle(16.0),
+              //       ),
+              //     ),
+              //     TableCellWidget(
+              //       child: Text(
+              //         '',
+              //         style: kInvoiceTextStyle(16.0),
+              //         textAlign: TextAlign.right,
+              //       ),
+              //     ),
+              //     TableCellWidget(
+              //       child: Text(
+              //         '',
+              //         style: kInvoiceTextStyle(16.0),
+              //         textAlign: TextAlign.right,
+              //       ),
+              //     ),
+              //     TableCellWidget(
+              //       child: Text(
+              //         "",
+              //         style: kInvoiceTextStyle(16.0),
+              //         textAlign: TextAlign.right,
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              // TableRow(
+              //   children: <Widget>[
+              //     TableCellWidget(
+              //       child: Text(
+              //         'Service Tax',
+              //         style: kInvoiceTextStyle(16.0),
+              //       ),
+              //     ),
+              //     TableCellWidget(
+              //       child: Text(
+              //         '',
+              //         style: kInvoiceTextStyle(16.0),
+              //         textAlign: TextAlign.right,
+              //       ),
+              //     ),
+              //     TableCellWidget(
+              //       child: Text(
+              //         '',
+              //         style: kInvoiceTextStyle(16.0),
+              //         textAlign: TextAlign.right,
+              //       ),
+              //     ),
+              //     TableCellWidget(
+              //       child: Text(
+              //         "",
+              //         style: kInvoiceTextStyle(16.0),
+              //         textAlign: TextAlign.right,
+              //       ),
+              //     ),
+              //   ],
+              // ),
+            ],
+          ),
+          const Divider(
+            color: Colors.black,
+            thickness: 1.0,
+            height: 1.0,
+          ),
+          //END FOR BROTHER COPY FROM ESCAPE RESTAURANT APP THIS CODE TABLE IDEAS
           const SizedBox(height: 10.0),
           Row(
             mainAxisSize: MainAxisSize.max,
