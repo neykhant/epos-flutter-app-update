@@ -1,10 +1,11 @@
 import 'package:dio/dio.dart';
+
 import '../models/all_stock_model.dart';
-import '../models/stock_model.dart';
-import '../models/item_model.dart';
 import '../models/category_model.dart';
-import 'api_service.dart';
+import '../models/item_model.dart';
+import '../models/stock_model.dart';
 import '../token.dart';
+import 'api_service.dart';
 
 class StockService {
   static StockModel _getObject(Map<String, dynamic> data) {
@@ -76,7 +77,7 @@ class StockService {
 
       if (response.statusCode == 200) {
         var data = response.data;
-
+        // print(response.data);
         if (data['data'].isNotEmpty) {
           for (Map<String, dynamic> element in data['data']) {
             resultSets.add(_getAllStockObject(element));

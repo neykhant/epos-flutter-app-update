@@ -1,5 +1,7 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
@@ -49,11 +51,14 @@ class _SellScreenState extends State<SellScreen> {
 
   final TextEditingController _extraChargeController = TextEditingController();
   final TextEditingController _discountController = TextEditingController();
-  final TextEditingController _paidController = TextEditingController();
+  // final TextEditingController _paidController = TextEditingController();
 
   int wholeTotal = 0;
   double credit = 0;
   double discount = 0;
+  String getItemCode = "";
+
+  // List<StockModel> _allStockList = [];
 
   List<String> itemNames = [];
   List<StockModel> _stockList = [];
@@ -169,6 +174,9 @@ class _SellScreenState extends State<SellScreen> {
           _itemPriceController.clear();
           _itemCountController.clear();
           _singleTotal.clear();
+          stockObject = null;
+          categoryObject = null;
+          getItemCode = "";
         });
       }
     } else {
@@ -193,6 +201,72 @@ class _SellScreenState extends State<SellScreen> {
         },
       );
     }
+  }
+
+  // Platform messages are asynchronous, so we initialize in an async method.
+  Future<void> scanBarcodeNormal() async {
+    String barcodeScanRes;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+          '#ff6666', 'Cancel', true, ScanMode.BARCODE);
+    } on PlatformException {
+      barcodeScanRes = 'Failed to get platform version.';
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    String code = "";
+    bool isItem = false;
+    if (barcodeScanRes != '') {
+      for (var i = 0; i < _stockList.length; i++) {
+        if (_stockList[i].itemModel.code == barcodeScanRes) {
+          isItem = true;
+          code = barcodeScanRes;
+          stockObject = _stockList[i];
+          for (var j = 0; j < _categoryList.length; j++) {
+            if (stockObject!.itemModel.categoryModel!.id ==
+                _categoryList[j].id) {
+              categoryObject = _categoryList[j];
+            }
+          }
+        }
+      }
+    }
+    if (isItem != true) {
+      // print("hello");
+      // Navigator.push(context, MaterialPageRoute(builder: (context) => ))
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text("သတိပေးချက်"),
+            content: Text(
+              "Items မရှိပါ",
+              style: kTextStyle(size: 16.0),
+            ),
+            actions: [
+              TextButton(
+                child: const Text("Cancel"),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+
+    setState(() {
+      getItemCode = code;
+      if (stockObject != null) {
+        _itemPriceController.text = stockObject!.itemModel.salePrice.toString();
+      }
+    });
   }
 
   @override
@@ -257,7 +331,6 @@ class _SellScreenState extends State<SellScreen> {
           ),
         );
       }
-
       return tableRows;
     }
 
@@ -282,14 +355,46 @@ class _SellScreenState extends State<SellScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
+                    MyButton(
+                      label: 'Scan with phone',
+                      fontSize: 14.0, //16
+                      verticalPadding: 12.0, //15
+                      horizontalPadding: 18.0, //20
+                      onPressed: scanBarcodeNormal,
+                      // onPressed: () => {},
+                      primary: Theme.of(context).primaryColor,
+                    ),
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Text(
+                          'Items Code = ',
+                          style: kTextStyle(),
+                        ),
+                        const SizedBox(width: 5.0),
+                        Text(
+                          '${getItemCode}',
+                          style: kTextStyle(),
+                        ),
+                      ],
+                    ),
+
                     DropdownSearch<String>(
                       // ignore: deprecated_member_use
+                      selectedItem: (categoryObject != null)
+                          ? categoryObject!.name
+                          : null,
                       hint: localizations.select_category,
                       mode: Mode.MENU,
                       items: categoryNames.toSet().toList(),
                       showClearButton: true,
                       showSearchBox: true,
                       onChanged: (String? data) {
+                        // print("data" + data!);
                         if (data == null) {
                           setState(() {
                             categoryObject = null;
@@ -307,6 +412,9 @@ class _SellScreenState extends State<SellScreen> {
                     ),
                     const SizedBox(height: 10.0),
                     DropdownSearch<String>(
+                      selectedItem: (stockObject != null)
+                          ? stockObject!.itemModel.itemName
+                          : null,
                       // ignore: deprecated_member_use
                       hint: localizations.select_item,
                       mode: Mode.MENU,
@@ -640,30 +748,31 @@ class _SellScreenState extends State<SellScreen> {
                     //     ),
                     //   ),
                     // ),
-                    // const SizedBox(height: 10.0),
-                    // DropdownSearch<String>(
-                    //   // ignore: deprecated_member_use
-                    //   hint: localizations.select_customer,
-                    //   mode: Mode.MENU,
-                    //   items: customerNames,
-                    //   showClearButton: true,
-                    //   showSearchBox: true,
-                    //   onChanged: (String? data) {
-                    //     if (data != null) {
-                    //       for (var i = 0; i < _customerList.length; i++) {
-                    //         if (_customerList[i].name == data) {
-                    //           setState(() {
-                    //             customerName = _customerList[i].name;
-                    //           });
-                    //         }
-                    //       }
-                    //     } else {
-                    //       setState(() {
-                    //         customerName = '';
-                    //       });
-                    //     }
-                    //   },
-                    // ),
+
+                    const SizedBox(height: 10.0),
+                    DropdownSearch<String>(
+                      // ignore: deprecated_member_use
+                      hint: localizations.select_customer,
+                      mode: Mode.MENU,
+                      items: customerNames,
+                      showClearButton: true,
+                      showSearchBox: true,
+                      onChanged: (String? data) {
+                        if (data != null) {
+                          for (var i = 0; i < _customerList.length; i++) {
+                            if (_customerList[i].name == data) {
+                              setState(() {
+                                customerName = _customerList[i].name;
+                              });
+                            }
+                          }
+                        } else {
+                          setState(() {
+                            customerName = '';
+                          });
+                        }
+                      },
+                    ),
 
                     //for brother shop no paid to sell end
 

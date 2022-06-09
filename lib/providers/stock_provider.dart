@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+
 import '../models/all_stock_model.dart';
 import '../models/stock_model.dart';
 import '../network/stock_service.dart';
-import 'package:flutter/material.dart';
 
 class StockProvider with ChangeNotifier {
   List<StockModel> _stocks = [];
@@ -20,8 +21,8 @@ class StockProvider with ChangeNotifier {
 
   loadStocks(int shopId) async {
     var result = await StockService.getStocks(shopId);
-
     if (result is List<StockModel>) {
+      // print(stocks);
       _errorMessage = null;
       _stocks = result;
       _isAuthenticated = true;
