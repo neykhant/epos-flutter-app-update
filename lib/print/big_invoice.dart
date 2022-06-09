@@ -177,17 +177,29 @@ class BigInvoice extends StatelessWidget {
           ),
           const Divider(
             color: Colors.black,
-            thickness: 0.5,
+            thickness: 0.8,
             height: 2.5,
           ),
           Table(
-            border: const TableBorder(
-              horizontalInside: BorderSide(
-                width: 1.0,
-                color: Colors.black,
-                style: BorderStyle.none,
-              ),
-            ),
+            // border: TableBorder.symmetric(
+            //   outside: BorderSide.none,
+            //   inside: const BorderSide(
+            //       width: 1, color: Colors.grey, style: BorderStyle.solid),
+            // ),
+            // border: TableBorder(
+            //   top: BorderSide(color: Colors.blue, width: 1),
+            //   bottom: BorderSide(color: Colors.blue, width: 1),
+            // ),
+            border: TableBorder(
+                horizontalInside: BorderSide(
+                    width: 0.3, color: Colors.black, style: BorderStyle.solid)),
+            // border: const TableBorder(
+            //   horizontalInside: BorderSide(
+            //     width: 1.0,
+            //     color: Colors.black,
+            //     style: BorderStyle.none,
+            //   ),
+            // ),
             columnWidths: const {
               0: FlexColumnWidth(1),
               1: FlexColumnWidth(2),
@@ -226,7 +238,7 @@ class BigInvoice extends StatelessWidget {
           ),
           const Divider(
             color: Colors.black,
-            thickness: 0.5,
+            thickness: 0.8,
             height: 2.5,
           ),
           const SizedBox(height: 8.0),
@@ -402,7 +414,7 @@ class BigInvoice extends StatelessWidget {
                       ],
                     ),
                     const Divider(
-                      color: Colors.black,
+                      color: Colors.red,
                     ),
                   ],
                 ),
@@ -464,3 +476,27 @@ class TableHeadingCell extends StatelessWidget {
     );
   }
 }
+
+//for header
+
+// headerRow(List<dynamic> titleRowData) {
+//   return Container(
+//     // height: ScreenUtil().setHeight(100),
+//     height: 100,
+//     child: Row(
+//       children: /* Add header cell data dynamically */,
+//     ),
+//     decoration: BoxDecoration(
+//       borderRadius: BorderRadius.only(
+//         topLeft: Radius.circular(10),
+//         topRight: Radius.circular(10),
+//       ),
+//       gradient: LinearGradient(
+//         begin: Alignment.topCenter,
+//         end: Alignment.bottomCenter,
+//         stops: [0, 1],
+//         colors: [],
+//       ),
+//     ),
+//   );
+// }
