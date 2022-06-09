@@ -414,7 +414,7 @@ class BigInvoice extends StatelessWidget {
                       ],
                     ),
                     const Divider(
-                      color: Colors.black,
+                      color: Colors.blue,
                     ),
                   ],
                 ),
